@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+
+
+  <!-- <button class="gqoxxy qq" onClick="javascript:alert()">Создать Папку</button> -->
+  <a id="a1" >Download text</a><br>
+  <input type="file" onchange="previewFile()">
+<!-- <p class="content"></p> -->
+<p class="getF"></p>
+
+
+
+</body>
+</html>
+<script>
+var getF = document.querySelector(".getF")
+var f1 = new File([new Blob(["Мяу и Мур"], {type : 'text/plain'})], "Кот.txt")
+var a1 = document.getElementById("a1")
+a1.href = URL.createObjectURL(f1)
+a1.download = f1.name
+
+  function previewFile() {
+  const content = document.querySelector('.content');
+
+  const [file] = document.querySelector('input[type=file]').files;
+  const reader = new FileReader();
+
+  reader.addEventListener("load", () => {
+    // this will then display a text file
+
+      // content.innerText = reader.result
+      localStorage.setItem("File22228",reader.result)
+      if (getF) {
+        getF.innerHTML = localStorage.getItem("File22228")
+      }
+
+      
+  }, false);
+
+  if (file) {
+    reader.readAsText(file);
+  }
+}
+
+setInterval(() => {
+  if (getF) {
+        getF.innerHTML = localStorage.getItem("File22228")
+      }
+}, 100);
+
+
+
+</script>
